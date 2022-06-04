@@ -5,6 +5,14 @@ textarea#app-out {
     height: 100px;
 }
 
+#textarea {
+    width: 60%;
+}
+
+#app-body {
+    width: 100%;
+}
+
 #app-header {
     overflow: hidden;
     margin: 0px 0px 20px 0px;
@@ -34,4 +42,21 @@ input#length {
 
 input#count {
     width: 40px;
+}
+
+#textarea,
+#copy {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#copy {
+    padding-top: 3px;
+}
+
+.copy {
+    display: block;
+    width: 15px;
+    height: 15px;
+    padding: 0px;
 }

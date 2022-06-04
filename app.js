@@ -2,6 +2,7 @@ const text_out = document.getElementById('app-out');
 const in_count = document.getElementById('count');
 const in_length = document.getElementById('length');
 const in_special = document.getElementById('special');
+const buttons = document.getElementById('copy');
 
 
 const letters = "abcdefghijklmnopqrstuvwxyz"
@@ -21,7 +22,7 @@ function generate() {
     const count = Number(count_str);
     const length = Number(length_str);
 
-    let text = "";
+    let words = [];
     for (let i = 0; i < count; i++) {
         let word = "";
 
@@ -76,13 +77,24 @@ function generate() {
             let rand_pos = Math.floor(Math.random() * word.length)
             word = word.splice(rand_pos, rand_char)
         }
-        text += word + "\n"
+        words.push(word)
     }
 
+    buttons.innerHTML = "";
+    words.forEach((w) => {
+        const bu = document.createElement('button');
+        bu.classList.add("copy");
+        bu.addEventListener('click', () => {
+            navigator.clipboard.writeText(w);
+        })
 
-    text_out.innerHTML = text;
+        buttons.appendChild(bu);
+    });
+
+
+    text_out.innerHTML = words.join("\n");
     text_out.style.height = 'auto';
-    text_out.style.height = text_out.scrollHeight - 15 + 'px';
+    text_out.style.height = text_out.scrollHeight + 'px';
 
 }
 
