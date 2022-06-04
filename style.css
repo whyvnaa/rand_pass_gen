@@ -1,7 +1,8 @@
 textarea#app-out {
     resize: none;
     overflow: hidden;
-    width: 500px;
+    width: 100%;
+    height: 100px;
 }
 
 #app-header {
@@ -24,4 +25,13 @@ body {
 
 #app-header > * {
     margin: 10px;
+    display: inline-block;
+}
+
+input#length {
+    width: 40px;
+}
+
+input#count {
+    width: 40px;
 }
