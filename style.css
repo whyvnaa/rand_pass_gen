@@ -1,0 +1,27 @@
+textarea#app-out {
+    resize: none;
+    overflow: hidden;
+    width: 500px;
+}
+
+#app-header {
+    overflow: hidden;
+    margin: 0px 0px 20px 0px;
+    display: flow-root;
+}
+
+#app-header button {
+    height: 45px;
+}
+
+#header {
+    margin: 0px 0px 50px 0px;
+}
+
+body {
+    padding-left: 20px;
+}
+
+#app-header > * {
+    margin: 10px;
+}

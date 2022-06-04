@@ -1,0 +1,118 @@
+const text_out = document.getElementById('app-out');
+const in_count = document.getElementById('count');
+const in_length = document.getElementById('length');
+const in_special = document.getElementById('special');
+
+
+const letters = "abcdefghijklmnopqrstuvwxyz"
+const LETTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+const numeric = '0123456789';
+const punctuation = '!@#$%^&*()_+~`|}{[]\\:;?><,./-=';
+
+String.prototype.splice = function (idx, str) {
+    return this.slice(0, idx) + str + this.slice(idx);
+};
+
+
+function generate() {
+    const count_str = in_count.value;
+    const length_str = in_length.value;
+
+    if (!isPositiveInteger(count_str) || !isPositiveInteger(length_str)) {
+        text_out.innerHTML = "not a number!!!";
+        text_out.style.height = (text_out.scrollHeight) + "px";
+        return
+    }
+
+    const count = Number(count_str);
+    const length = Number(length_str);
+
+    let text = "";
+    for (let i = 0; i < count; i++) {
+        let word = "";
+
+        if (in_special.checked) {
+            var numeric_count = Math.ceil(length * 1 / 9);
+            var punctuation_count = Math.ceil(length * 2 / 9);
+        } else {
+            var numeric_count = Math.ceil(length * 2 / 9);
+            var punctuation_count = 0;
+        }
+        var LETTER_count = Math.floor((length - numeric_count - punctuation_count) / 2);
+        var letter_count = Math.ceil((length - numeric_count - punctuation_count) / 2);
+
+        var cur_letters = letters;
+        var cur_LETTERS = LETTERS;
+        var cur_numeric = numeric;
+        var cur_punctuation = punctuation;
+
+        while (numeric_count-- > 0) {
+            let rand_char_idx = Math.floor(Math.random() * cur_numeric.length);
+            let rand_char = cur_numeric.charAt(rand_char_idx)
+            cur_numeric = cur_numeric.slice(0, rand_char_idx) + cur_numeric.slice(rand_char_idx + 1);
+            let rand_pos = Math.floor(Math.random() * word.length)
+            word = word.splice(rand_pos, rand_char)
+        }
+        while (punctuation_count-- > 0) {
+            let rand_char_idx = Math.floor(Math.random() * cur_punctuation.length);
+            let rand_char = cur_punctuation.charAt(rand_char_idx)
+            cur_punctuation = cur_punctuation.slice(0, rand_char_idx) + cur_punctuation.slice(rand_char_idx + 1);
+            let rand_pos = Math.floor(Math.random() * word.length)
+            word = word.splice(rand_pos, rand_char)
+        }
+        while (LETTER_count-- > 0) {
+            let rand_char_idx = Math.floor(Math.random() * cur_LETTERS.length);
+            let rand_char = cur_LETTERS.charAt(rand_char_idx)
+            cur_LETTERS = cur_LETTERS.slice(0, rand_char_idx) + cur_LETTERS.slice(rand_char_idx + 1);
+            let rand_pos = Math.floor(Math.random() * word.length)
+            word = word.splice(rand_pos, rand_char)
+        }
+        while (letter_count-- > 0) {
+            let rand_char_idx = Math.floor(Math.random() * cur_letters.length);
+            let rand_char = cur_letters.charAt(rand_char_idx)
+            cur_letters = cur_letters.slice(0, rand_char_idx) + cur_letters.slice(rand_char_idx + 1);
+            let rand_pos = Math.floor(Math.random() * word.length)
+            word = word.splice(rand_pos, rand_char)
+        }
+
+
+
+
+        text += word + "\n"
+    }
+
+
+    text_out.innerHTML = text;
+    text_out.style.height = (text_out.scrollHeight - 15) + "px";
+}
+
+function isPositiveInteger(str) {
+    if (typeof str !== 'string') {
+        return false;
+    }
+
+    const num = Number(str);
+
+    if (Number.isInteger(num) && num > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>rand_pass_gen</title>
+    </head>
+    <body>
+        <div id="header">
+            <h1>rand_pass_gen</h1>
+        </div>
+        <div id="app">
+            <div id="app-header">
+                <div>
+                    <label for="count"> Anzahl: </label>
+                    <input type="text" name="count" id="count" value="20" />
+                </div>
+                <div>
+                    <label for="length"> Länge: </label>
+                    <input type="text" name="length" id="length" value="10" />
+                </div>
+                <div>
+                    <label for="special"> Sonderzeichen? </label>
+                    <input type="checkbox" name="special" id="special" value="10" />
+                </div>
+                <button onclick="generate()">Generate</button>
+            </div>
+            <div id="app-body">
+                <textarea id="app-out" oninput="auto_grow(this)"> </textarea>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
